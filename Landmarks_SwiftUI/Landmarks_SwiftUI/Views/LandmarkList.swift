@@ -13,9 +13,15 @@ struct LandmarkList: View {
 //            LandmarkRow(landmark: landmark)
 //        }
         
-        // LandmarkにswiftIdentifiableを追加することで、以下のように簡略化できる
-        List(landmarks) { landmark in
-            LandmarkRow(landmark: landmark)
+        NavigationView {
+            // LandmarkにswiftIdentifiableを追加することで、以下のように簡略化できる
+            
+            List(landmarks) { landmark in
+                NavigationLink(destination: LandmarkDetail()) {
+                LandmarkRow(landmark: landmark)
+                }
+            }
+            .navigationTitle("Landmarks")
         }
 
     }
