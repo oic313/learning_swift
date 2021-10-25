@@ -1,7 +1,9 @@
 import SwiftUI
 
 struct LandmarkList: View {
+    // @EnvironmentObject: アプリ全体で共通のインスタンス
     @EnvironmentObject var modelData: ModelData
+    // @State: 変更可能なプロパティ。基本SwiftUIはプロパティの値を変更できない
     @State private var showFavoritesOnly = false
     
     var filteredLandmarks: [Landmark] {
@@ -27,6 +29,7 @@ struct LandmarkList: View {
             //            List(filteredLandmarks) { landmark in
             // お気に入りフィルターのオンオフ切り替えに合わせてリストを切り替える
             List {
+                // @Stateプロパティの値を変更するアクセスには$をつける
                 Toggle(isOn: $showFavoritesOnly) {
                     Text("Favorites only")
                 }
@@ -50,6 +53,8 @@ struct LandmarkList_Previews: PreviewProvider {
         //                .previewDevice(PreviewDevice(rawValue: deviceName))
         //                .previewDisplayName(deviceName)
         //        }
+        
+        // EnvironmentObjectであるModelDataのインスタンスを紐付ける
         LandmarkList()
             .environmentObject(ModelData())        
     }
